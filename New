@@ -1,0 +1,138 @@
+```html
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>點名系統</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        #stats {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        #name-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #name-list li {
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 600px) {
+            button {
+                width: 100%;
+                margin: 5px 0;
+            }
+            #name-list {
+                flex-direction: column;
+            }
+        }
+        #reset-message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>點名系統</h1>
+    <div id="stats">
+        已點人數: <span id="called">0</span> | 未點人數: <span id="uncalled">30</span>
+    </div>
+    <ul id="name-list">
+        <li><button onclick="markCalled(this)">劉思堯</button></li>
+        <li><button onclick="markCalled(this)">郭天華</button></li>
+        <li><button onclick="markCalled(this)">袁崇高</button></li>
+        <li><button onclick="markCalled(this)">石梓逸</button></li>
+        <li><button onclick="markCalled(this)">趙文逸</button></li>
+        <li><button onclick="markCalled(this)">劉港生</button></li>
+        <li><button onclick="markCalled(this)">馬承由</button></li>
+        <li><button onclick="markCalled(this)">黃宮康</button></li>
+        <li><button onclick="markCalled(this)">郭景榮</button></li>
+        <li><button onclick="markCalled(this)">秦馳騰</button></li>
+        <li><button onclick="markCalled(this)">況杰威</button></li>
+        <li><button onclick="markCalled(this)">劉駿明</button></li>
+        <li><button onclick="markCalled(this)">王浚銓</button></li>
+        <li><button onclick="markCalled(this)">張成軒</button></li>
+        <li><button onclick="markCalled(this)">鍾子強</button></li>
+        <li><button onclick="markCalled(this)">林新豪</button></li>
+        <li><button onclick="markCalled(this)">金德文</button></li>
+        <li><button onclick="markCalled(this)">朱柏文</button></li>
+        <li><button onclick="markCalled(this)">吳偉賢</button></li>
+        <li><button onclick="markCalled(this)">方潔</button></li>
+        <li><button onclick="markCalled(this)">吳澤榮</button></li>
+        <li><button onclick="markCalled(this)">賴振威</button></li>
+        <li><button onclick="markCalled(this)">林江濱</button></li>
+        <li><button onclick="markCalled(this)">黎慧俊</button></li>
+        <li><button onclick="markCalled(this)">許智謙</button></li>
+        <li><button onclick="markCalled(this)">魏英和</button></li>
+        <li><button onclick="markCalled(this)">徐健庭</button></li>
+        <li><button onclick="markCalled(this)">李澤康</button></li>
+        <li><button onclick="markCalled(this)">陳德誠</button></li>
+        <li><button onclick="markCalled(this)">溫永倫</button></li>
+    </ul>
+    <div id="reset-message" style="display: none;">所有名字已點完，正在重置...</div>
+
+    <script>
+        let calledCount = 0;
+        let uncalledCount = 30;
+        const nameItems = document.querySelectorAll('#name-list li');
+
+        function markCalled(button) {
+            // 隱藏按鈕的父元素 li
+            button.parentElement.style.display = 'none';
+            // 更新計數
+            calledCount++;
+            uncalledCount--;
+            document.getElementById('called').textContent = calledCount;
+            document.getElementById('uncalled').textContent = uncalledCount;
+
+            // 如果所有名字都被點完，自動重置
+            if (uncalledCount === 0) {
+                document.getElementById('reset-message').style.display = 'block';
+                setTimeout(resetNames, 2000); // 延遲2秒後重置，給用戶看到消息
+            }
+        }
+
+        function resetNames() {
+            // 重置所有名字顯示
+            nameItems.forEach(item => {
+                item.style.display = 'list-item'; // 或 'block'，根據需要
+            });
+            // 重置計數
+            calledCount = 0;
+            uncalledCount = 30;
+            document.getElementById('called').textContent = calledCount;
+            document.getElementById('uncalled').textContent = uncalledCount;
+            // 隱藏重置消息
+            document.getElementById('reset-message').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+```
